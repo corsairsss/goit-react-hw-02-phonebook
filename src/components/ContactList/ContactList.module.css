@@ -1,0 +1,14 @@
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+.list__item {
+  margin-bottom: 10px;
+  width: 400px;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr max-content min-content;
+  grid-column-gap: 30px;
+}

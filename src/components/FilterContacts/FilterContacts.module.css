@@ -1,0 +1,11 @@
+.filterInput {
+  height: 25px;
+  margin-left: 5px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.filterTitle {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
