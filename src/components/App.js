@@ -13,8 +13,9 @@ export default class App extends Component {
   };
 
   addContact = ({ name, phone }) => {
-    const isContact = this.state.contacts.find(
-      el => el.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
+    const { contacts } = this.state;
+    const isContact = contacts.find(
+      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
     );
     if (isContact) {
       alert(`Sorry,but contact ${name}  already exist`);
@@ -37,17 +38,18 @@ export default class App extends Component {
     });
   };
 
-  changeFilter = e => {
-    const filter = e.target.value;
+  changeFilter = ({ target }) => {
+    const filter = target.value;
     this.setState({ filter });
   };
 
-  getFiltredList = () =>
-    this.state.contacts.filter(el =>
-      el.name
-        .toLocaleLowerCase()
-        .includes(this.state.filter.toLocaleLowerCase()),
+  getFiltredList = () => {
+    const { contacts, filter } = this.state;
+    const filteredList = contacts.filter(contact =>
+      contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()),
     );
+    return filteredList;
+  };
 
   removeContact = e => {
     const key = e.target.dataset.key;
@@ -61,16 +63,17 @@ export default class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     const filtredContact = this.getFiltredList();
-
+    const isShowFiltered = contacts.length >= 2;
+    const isShowContactsList = contacts.length >= 1;
     return (
       <>
         <Section title={'Phonebook'}>
           <ContactForm onAddContact={this.addContact} />
-          {contacts.length >= 2 && (
+          {isShowFiltered && (
             <FilterContacts value={filter} onChangeFilter={this.changeFilter} />
           )}
         </Section>
-        {contacts.length >= 1 && (
+        {isShowContactsList && (
           <Section title={'Contacts:'}>
             <ContactList
               list={filtredContact}

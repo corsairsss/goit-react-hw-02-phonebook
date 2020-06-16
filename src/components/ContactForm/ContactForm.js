@@ -8,15 +8,15 @@ export default class ContactForm extends Component {
     phone: '',
   };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onAddContact(this.state);
+    const { onAddContact } = this.props;
+    onAddContact(this.state);
     this.setState({ name: '', phone: '' });
   };
 
