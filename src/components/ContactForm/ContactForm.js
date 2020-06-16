@@ -42,6 +42,7 @@ export default class ContactForm extends Component {
             value={this.state.phone}
             onChange={this.handleChange}
             name="phone"
+            placeholder="in format: 0XXXXXXXXX"
           />
         </label>
 
